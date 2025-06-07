@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "${PORT_APP}:${PORT_APP}"
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+    volumes:
+      - ./src:/usr/src/app/src
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "${PORT_DATABASE}:${PORT_DATABASE}"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=no
+      - POSTGRES_USER=${USER_DATABASE}
+      - POSTGRES_PASSWORD=${PASS_DATABASE}
+      - POSTGRES_DB=${NAME_DATABASE}
+    volumes:
+      - postgres_data:/data/db
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  postgres_data:
