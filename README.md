@@ -1,98 +1,257 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<h1> Desafio Técnico - Desenvolvedor Node.js / NestJS (Intermediário) </h1>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Objetivo
+<p>Construir uma API RESTful de gerenciamento de tarefas com autenticação JWT e boas práticas de arquitetura NestJS.</p>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Stack obrigatória
+- Node.js
+- NestJS
+- TypeScript
+- PostgreSQL
+- ORM (TypeORM ou Prisma)
+- JWT
+- Class-validator (validações)
+- Jest (testes)
 
-## Description
+## Tecnologias Utilizadas
+![Node.js](https://img.shields.io/badge/Node.js-417E38?style=for-the-badge&logo=node.js&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-73618F?style=for-the-badge&logo=mysql&logoColor=white)
+![TypeORM](https://img.shields.io/badge/TypeORM-3A005D?style=for-the-badge&logo=typeorm&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-blue?style=for-the-badge&logo=docker)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+<hr>
 
-## Project setup
+## 🎲 Banco de Dados
 
-```bash
-$ npm install
+<p>
+O banco de dados está estruturado da seguinte maneira:</p>
+
+* Os ids são uuids
+- users: id, username, password
+- tasks: id, title, description, status, createdAt, updatedAt
+
+<br>
+
+## ✨ Funcionalidades
+- Cadastro de usuário
+- Login
+- CRUD de tarefas
+
+<p><strong>Observação</strong>: As rotas de tarefas exigem <strong>autenticação</strong></p>
+
+<br>
+
+## ⚙️ Executando a aplicação
+
+Para executar o projeto localmente, siga os passos abaixo:
+
+### Instalação
+
+1. Clone o repositório:
+
+```
+ git clone https://github.com/CaiocDeus/api-justisecure-desafio.git
 ```
 
-## Compile and run the project
+2. Vá para a pasta do projeto:
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+cd api-justisecure-desafio
 ```
 
-## Run tests
+3. Instale as dependências do projeto:
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+npm install
 ```
 
-## Deployment
+4. Configurar o arquivo de ambiente (.env):
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+```
+cp .env.example .env
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+5. Suba os containers do projeto com o comando: (É preciso ter o Docker instalado)
 
-## Resources
+```
+docker-compose up -d
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+6. Após isso, você poderá fazer as requisições seguindo os passos da seção logo abaixo.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```
+A aplicação por padrão estará funcionando na porta 3010.
+```
 
-## Support
+<br>
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 📑 Documentação da API
 
-## Stay in touch
+### Funcionalidades de autenticação
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+<details>
+  <summary>Registrar usuário /auth/register</summary>
 
-## License
+  <code>POST</code> <code>/auth/register</code>
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+  | Headers   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `Content-Type` | `application/json` | **Obrigatório** -> Tipo de mídia dos dados que estão sendo enviados na requisição |
+
+  | Parâmetros Body   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `username` | `string` | **Obrigatório** -> Username do usuário |
+  | `password` | `string` | **Obrigatório** -> Senha do usuário |
+
+  #### Exemplo de retorno
+
+  <p>Status: 201 Created</p>
+    {
+      "id": "01957d0c-5f58-71e6-bc28-cf871b8b2bdd",
+      "username": "teste",
+      "password": "$2b$08$fYpjKycAj004f49Qv6jQr.y1BE1EbNk.mUEp42zBcmI1e0eTPZPWK"
+    }
+</details>
+
+<details>
+  <summary>Logar na rota /auth/login</summary>
+
+  <code>POST</code> <code>/auth/login</code>
+
+  | Headers   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `Content-Type` | `application/json` | **Obrigatório** -> Tipo de mídia dos dados que estão sendo enviados na requisição |
+
+  | Parâmetros Body   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `username` | `string` | **Obrigatório** -> Username do usuário |
+  | `password` | `string` | **Obrigatório** -> Password do usuário |
+
+  #### Exemplo de retorno
+
+  <p>Status: 200 OK</p>
+    {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMzkzZTQ3NC00NTY5LTRhZWYtYWRlYy1kNjhkNWU0Yzk5MzMiLCJ1c2VybmFtZSI6InRlc3RlIiwiaWF0IjoxNzQ5MzE4MTAxLCJleHAiOjE3NDkzMjUzMDF9.Jzf6t5SSF4fNRB6ti5I2dTuDI04DZJRle7j1uKmzB70"
+    }
+</details>
+
+<hr>
+
+### Funcionalidades das tarefas em rotas autenticadas.
+
+<details>
+  <summary>Obter informações das tarefas na rota /tasks</summary>
+
+  <code>GET</code> <code>/tasks</code>
+
+  | Headers   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `Authorization` | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` | **Obrigatório** -> Seu token gerado no login |
+
+  #### Exemplo de retorno
+
+  <p>Status: 200 OK</p>
+    [
+      {
+        "id": "01957d0c-5f58-71e6-bc28-cf871b8b2bdd",
+        "title": "teste",
+        "description": "teste",
+        "status": "PENDING",
+        "created_at": "2024-07-15T23:49:44.000000Z",
+        "updated_at": "2024-07-15T23:49:44.000000Z"
+      },
+      {
+        "id": "01957d0c-6021-72d3-80fb-bb6cf14f5708",
+        "title": "teste2",
+        "description": "teste2",
+        "status": "DONE",
+        "created_at": "2024-07-15T23:49:44.000000Z",
+        "updated_at": "2024-07-15T23:49:44.000000Z"
+      }
+    ]
+
+</details>
+
+<details>
+  <summary>Criar tarefa na rota /tasks</summary>
+
+  <code>POST</code> <code>/tasks</code>
+
+  | Headers   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `Content-Type` | `application/json` | **Obrigatório** -> Tipo de mídia dos dados que estão sendo enviados na requisição |
+  | `Authorization` | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` | **Obrigatório** -> Seu token gerado no login |
+
+  | Parâmetros Body   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `title` | `string` | **Obrigatório** -> Título da tarefa |
+  | `description` | `string` | **Obrigatório** -> Descrição da tarefa |
+  | `status` | `enum (PENDING, IN_PROGRESS, DONE)` | Status da tarefa |
+
+  #### Exemplo de retorno
+
+  <p>Status: 201 Created</p>
+    {
+      "id": "51fcc857-1953-4d46-ad17-465edc899c0c",
+      "title": "teste2",
+      "description": "teste2",
+      "status": "PENDING",
+      "createdAt": "2025-06-09T03:59:11.762Z",
+      "updatedAt": "2025-06-09T03:59:11.762Z"
+    }
+</details>
+
+<details>
+  <summary>Alterar uma tarefa na rota /tasks/{id}</summary>
+
+  <code>PATCH</code> <code>/tasks/{id}</code>
+
+  | Headers   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `Content-Type` | `application/json` | **Obrigatório** -> Tipo de mídia dos dados que estão sendo enviados na requisição |
+  | `Authorization` | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` | **Obrigatório** -> Seu token gerado no login |
+
+  | Parâmetro via Request   | Tipo       | Descrição               |
+  | :---------- | :--------- | :---------------------------------- |
+  | `id` | `string` | **Obrigatório** ->  ID da tarefa |
+
+  | Parâmetros Body   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `title` | `string` | Título da tarefa |
+  | `description` | `string` | Descrição da tarefa |
+  | `status` | `enum (PENDING, IN_PROGRESS, DONE)` | Status da tarefa |
+
+  #### Exemplo de retorno
+
+  <p>Status: 200 OK</p>
+</details>
+
+<details>
+  <summary>Exclusão de uma tarefa na rota /tasks/{id}</summary>
+
+  <code>DELETE</code> <code>/tasks/{id}</code>
+
+  | Headers   | Tipo       | Descrição                           |
+  | :---------- | :--------- | :---------------------------------- |
+  | `Authorization` | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` | **Obrigatório** -> Seu token gerado no login |
+
+  | Parâmetro via Request   | Tipo       | Descrição               |
+  | :---------- | :--------- | :---------------------------------- |
+  | `id` | `string` | **Obrigatório** ->  ID da tarefa |
+
+  #### Exemplo de retorno
+
+  <p>Status: 200 OK</p>
+</details>
+
+<hr>
+
+## Autor
+
+Caio Cesar de Deus
+
+<hr>
+
+## 📫 Contato
+[![Linkedin](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/caio-deus)
+[![Email](https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:caioc.deus@outlook.com)

@@ -1,15 +1,15 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
-import { compare, hash } from 'bcrypt';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { User } from "./entities/user.entity";
+import { hash } from "bcrypt";
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private repository: Repository<User>,
+    private readonly repository: Repository<User>,
   ) {}
 
   async create(user: CreateUserDto): Promise<User> {
@@ -22,7 +22,7 @@ export class UsersService {
 
   async findByUsername(username: string): Promise<User | null> {
     return await this.repository.findOne({
-      where: { username: username },
+      where: { username },
     });
   }
 }

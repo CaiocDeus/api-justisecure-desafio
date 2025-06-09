@@ -1,13 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
-import { TasksService } from './tasks.service';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
-import { AuthGuard } from 'src/shared/guards/auth.guard';
+import { Controller, Post, Body, UseGuards, Get, Patch, Param, Delete } from "@nestjs/common";
+import { AuthGuard } from "../shared/guards/auth.guard";
+import { CreateTaskDto } from "./dto/create-task.dto";
+import { UpdateTaskDto } from "./dto/update-task.dto";
+import { TasksService } from "./tasks.service";
+
 
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() createTaskDto: CreateTaskDto) {
     return this.tasksService.create(createTaskDto);
@@ -17,12 +19,6 @@ export class TasksController {
   @Get()
   findAll() {
     return this.tasksService.findAll();
-  }
-
-  @UseGuards(AuthGuard)
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tasksService.findOne(id);
   }
 
   @UseGuards(AuthGuard)
